@@ -21,6 +21,7 @@ def load_documents(file_path: str):
         list: List of documents.
     """
     try:
+        logger.info("Loading Documents ...")
         loader = PyPDFLoader(file_path)
         documents = loader.load()
         logger.info("Documents loaded successfully from %s", file_path)
@@ -49,12 +50,10 @@ def split_documents(documents: list, chunk_size: int = 2000, chunk_overlap: int 
         raise CustomException(e, sys)
     
     
-# if __name__ == "__main__":
-#     file_path = os.path.join("data", "sample.pdf")
-#     documents = load_documents(file_path)
-#     texts = split_documents(documents)
-
 if __name__ == "__main__":
-    file_path = os.path.join("data", "sample.pdf")
+    # file_path = os.path.join("data", "sample.pdf")
+    file_path = os.path.join(project_root, "data", "a_thousand_splendid_sun.pdf")
     documents = load_documents(file_path)
     texts = split_documents(documents)
+
+
