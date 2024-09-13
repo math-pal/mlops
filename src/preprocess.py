@@ -5,7 +5,9 @@ import sys
 project_root = "E:/Training/Atomcamp/DS6_Bootcamp/Sessions/Guiede_Projects/mlops"
 # Ensure the project root is at the top of sys.path
 sys.path.insert(0, project_root)
-from langchain.document_loaders import PyPDFLoader
+# sys.path.append('E:/Training/Atomcamp/DS6_Bootcamp/Sessions/Guiede_Projects/mlops')
+# from langchain.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from custom_logging import logger
 from custom_exception import CustomException

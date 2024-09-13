@@ -1,8 +1,9 @@
 import os
 import sys
 from dotenv import load_dotenv
-from langchain_openai import OpenAIEmbeddings
+# from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Qdrant
+from langchain.embeddings import HuggingFaceEmbeddings
 from qdrant_client.http import models
 from qdrant_client import QdrantClient
 from custom_logging import logger
@@ -21,11 +22,12 @@ def store_documents_to_qdrant(texts: list):
         Qdrant: Qdrant vector store instance.
     """
     try:
-        qdrant_end = os.getenv('QDRANT_END')
+        qdrant_end = os.getenv('QDRANT_URL')
         qdrant_api_key = os.getenv('QDRANT_API_KEY')
-        openai_api_key = os.getenv('OPENAI_API_KEY')
+        # openai_api_key = os.getenv('OPENAI_API_KEY')
 
-        embeddings_model = OpenAIEmbeddings(model='text-embedding-ada-002', openai_api_key=openai_api_key)
+        # embeddings_model = OpenAIEmbeddings(model='text-embedding-ada-002', openai_api_key=openai_api_key)
+        embeddings_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
         qdrant = Qdrant.from_documents(
             texts,
